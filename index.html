@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <script src="./libs/StartAudioContext.js"></script>
+    <link rel="stylesheet" type="text/css" href="style.css" />
+  </head>
+
+  <body>
+    <div class="container">
+      <input
+        type="range"
+        min="10"
+        max="5000"
+        value="1000"
+        id="primary-oscillator"
+      />
+      <input
+        type="range"
+        min="10"
+        max="5000"
+        value="1000"
+        id="side-oscillator"
+      />
+
+      <input type="range" min="50" max="5000" value="100" id="formant-1" />
+      <input type="range" min="50" max="5000" value="100" id="formant-2" />
+      <input type="range" min="50" max="5000" value="100" id="formant-3" />
+      <input type="range" min="50" max="5000" value="100" id="formant-4" />
+
+      <input type="range" min="0" max="10" value="1" id="formant-mix-1" />
+      <input type="range" min="0" max="10" value="1" id="formant-mix-2" />
+      <input type="range" min="0" max="10" value="1" id="formant-mix-3" />
+      <input type="range" min="0" max="10" value="1" id="formant-mix-4" />
+      <button id="subharmonic-divider">Divide</button>
+    </div>
+
+    <script src="main.js"></script>
+
+    <!-- <script src="midi.js"></script> -->
+  </body>
+</html>
