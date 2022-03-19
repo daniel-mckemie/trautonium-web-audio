@@ -8,30 +8,68 @@
 
   <body>
     <div class="container">
-      <input
-        type="range"
-        min="10"
-        max="5000"
-        value="1000"
-        id="primary-oscillator"
-      />
-      <input
-        type="range"
-        min="10"
-        max="5000"
-        value="1000"
-        id="side-oscillator"
-      />
+      <div>
+        <p>Oscillators</p>
+        <input type="range" min="1" max="999" value="10" id="main-oscillator" />
+        <input type="range" min="1" max="999" value="10" id="side-oscillator" />
+      </div>
 
-      <input type="range" min="50" max="5000" value="100" id="formant-1" />
-      <input type="range" min="50" max="5000" value="100" id="formant-2" />
-      <input type="range" min="50" max="5000" value="100" id="formant-3" />
-      <input type="range" min="50" max="5000" value="100" id="formant-4" />
+      <p>Formant Freqs</p>
+      <div>
+        <div>
+          <input
+            type="range"
+            min="1"
+            max="999"
+            value="10"
+            id="formant-1-freq"
+          />
+          <input type="range" min="1" max="999" value="10" id="formant-1-Q" />
+          <input type="checkbox" id="formant-type-1" />
+        </div>
+        <div>
+          <input
+            type="range"
+            min="1"
+            max="999"
+            value="10"
+            id="formant-2-freq"
+          />
+          <input type="range" min="1" max="999" value="10" id="formant-2-Q" />
+          <input type="checkbox" id="formant-type-2" />
+        </div>
+        <div>
+          <input
+            type="range"
+            min="1"
+            max="999"
+            value="10"
+            id="formant-3-freq"
+          />
+          <input type="range" min="1" max="999" value="10" id="formant-3-Q" />
+          <input type="checkbox" id="formant-type-3" />
+        </div>
+        <div>
+          <input
+            type="range"
+            min="1"
+            max="999"
+            value="10"
+            id="formant-4-freq"
+          />
+          <input type="range" min="1" max="999" value="10" id="formant-4-Q" />
+          <input type="checkbox" id="formant-type-4" />
+        </div>
+      </div>
 
-      <input type="range" min="0" max="10" value="1" id="formant-mix-1" />
-      <input type="range" min="0" max="10" value="1" id="formant-mix-2" />
-      <input type="range" min="0" max="10" value="1" id="formant-mix-3" />
-      <input type="range" min="0" max="10" value="1" id="formant-mix-4" />
+      <p>Formant Mix</p>
+      <div>
+        <input type="range" min="0" max="10" value="1" id="formant-mix-1" />
+        <input type="range" min="0" max="10" value="1" id="formant-mix-2" />
+        <input type="range" min="0" max="10" value="1" id="formant-mix-3" />
+        <input type="range" min="0" max="10" value="1" id="formant-mix-4" />
+      </div>
+
       <button id="subharmonic-divider">Divide</button>
     </div>
 
