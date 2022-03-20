@@ -8,71 +8,71 @@
 
   <body>
     <div class="container">
+      <button id="button">Play</button>      
       <div>
-        <p>Oscillators</p>
-        <input type="range" min="1" max="999" value="10" id="main-oscillator" />
-        <input type="range" min="1" max="999" value="10" id="side-oscillator" />
+        <p>Main Osc ----------------------- Side Osc ----------------------- Noise Source</p>
+        <input type="range" min="1" max="1000" value="10" id="main-oscillator" />
+        <input type="range" min="1" max="1000" value="10" id="side-oscillator" />
+        <input type="range" min="1" max="1000" value="10" id="noise-filter" />
+      </div>
+      <div class="divisions">
+        <p>Sub-Harmonic Divisions</p>
+        <input type="number" min="1" max="24" value="2" id="freq-div-1"/>
+        <input type="number" min="1" max="24" value="3" id="freq-div-2"/>
+        <input type="number" min="1" max="24" value="4" id="freq-div-3"/>
+        <input type="number" min="1" max="24" value="5" id="freq-div-4"/>
+      </div>
+      <div class="sub-harm-mixer">
+        <p>Sub-Harmonic Mixer</p>
+        <input type="range" min="1" max="1000" value="10" id="sub-harm-gain-1"/>
+        <input type="range" min="1" max="1000" value="10" id="sub-harm-gain-2"/>
+        <input type="range" min="1" max="1000" value="10" id="sub-harm-gain-3"/>
+        <input type="range" min="1" max="1000" value="10" id="sub-harm-gain-4"/>
       </div>
 
-      <p>Formant Freqs</p>
+      <p>Formant -- Freqs ------------------- Q ---------------- LP/BP --------------- Amp </p>
       <div>
         <div>
-          <input
-            type="range"
-            min="1"
-            max="999"
-            value="10"
-            id="formant-1-freq"
-          />
-          <input type="range" min="1" max="999" value="10" id="formant-1-Q" />
+          <input type="range" min="1" max="1000" value="10" id="formant-1-freq" />
+          <input type="range" min="1" max="1000" value="10" id="formant-1-Q" />
           <input type="checkbox" id="formant-type-1" />
+          <input type="range" min="0" max="100" value="1" id="formant-amp-1" />
         </div>
         <div>
-          <input
-            type="range"
-            min="1"
-            max="999"
-            value="10"
-            id="formant-2-freq"
-          />
-          <input type="range" min="1" max="999" value="10" id="formant-2-Q" />
+          <input type="range" min="1" max="1000" value="10" id="formant-2-freq" />
+          <input type="range" min="1" max="1000" value="10" id="formant-2-Q" />
           <input type="checkbox" id="formant-type-2" />
+          <input type="range" min="0" max="100" value="1" id="formant-amp-2" />
         </div>
         <div>
-          <input
-            type="range"
-            min="1"
-            max="999"
-            value="10"
-            id="formant-3-freq"
-          />
-          <input type="range" min="1" max="999" value="10" id="formant-3-Q" />
+          <input type="range" min="1" max="1000" value="10" id="formant-3-freq" />
+          <input type="range" min="1" max="1000" value="10" id="formant-3-Q" />
           <input type="checkbox" id="formant-type-3" />
+          <input type="range" min="0" max="100" value="1" id="formant-amp-3" />
         </div>
         <div>
-          <input
-            type="range"
-            min="1"
-            max="999"
-            value="10"
-            id="formant-4-freq"
-          />
-          <input type="range" min="1" max="999" value="10" id="formant-4-Q" />
+          <input type="range" min="1" max="1000" value="10" id="formant-4-freq" />
+          <input type="range" min="1" max="1000" value="10" id="formant-4-Q" />
           <input type="checkbox" id="formant-type-4" />
+          <input type="range" min="0" max="100" value="1" id="formant-amp-4" />
         </div>
-      </div>
-
-      <p>Formant Mix</p>
-      <div>
-        <input type="range" min="0" max="10" value="1" id="formant-mix-1" />
-        <input type="range" min="0" max="10" value="1" id="formant-mix-2" />
-        <input type="range" min="0" max="10" value="1" id="formant-mix-3" />
-        <input type="range" min="0" max="10" value="1" id="formant-mix-4" />
-      </div>
-
-      <button id="subharmonic-divider">Divide</button>
+        <div>
+          <p>Mixer -- Sub Harm Osc --------------- Main Osc --------------- Side Osc --------------- Noise  </p>
+          <input type="range" min="0" max="100" value="0" id="mixer-ch1" />
+          <input type="range" min="0" max="100" value="0" id="mixer-ch2" />
+          <input type="range" min="0" max="100" value="0" id="mixer-ch3" />
+          <input type="range" min="0" max="100" value="0" id="mixer-ch4" />
+        </div>
+        <div>
+          <p>Room Specs</p>
+          <input type="range" min="-100" max="100" value="0" id="x-position" />
+          <input type="range" min="-100" max="100" value="0" id="y-position" />
+          <input type="range" min="-100" max="100" value="0" id="z-position" />
+        </div>
+      </div>            
     </div>
 
+    <script src="./libs/resonance-audio.min.js"></script>
     <script src="main.js"></script>
 
     <!-- <script src="midi.js"></script> -->
