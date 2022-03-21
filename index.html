@@ -1,26 +1,41 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="UTF-8" />
+    <meta charset="UTF-8" />    
     <script src="./libs/StartAudioContext.js"></script>
     <link rel="stylesheet" type="text/css" href="style.css" />
   </head>
 
   <body>
     <div class="container">
+      <p>
+        Play button starts. <br />
+        Any key press divides the Main Osc freq by Bank 2 values, with Bank 1 being the defaults.                
+      </p>
       <button id="button">Play</button>      
       <div>
-        <p>Main Osc ----------------------- Side Osc ----------------------- Noise Source</p>
+        <p>Main Osc Freq</p>
         <input type="range" min="1" max="1000" value="10" id="main-oscillator" />
-        <input type="range" min="1" max="1000" value="10" id="side-oscillator" />
+      </div>
+      <div>
+        <p>Main Osc Detune ----------------- Side Osc Detune ----- Noise Source BP Filter</p>
+        <input type="range" min="-100" max="100" value="10" id="main-oscillator-detune" />
+        <input type="range" min="-100" max="100" value="0" id="side-oscillator-detune" />
         <input type="range" min="1" max="1000" value="10" id="noise-filter" />
       </div>
       <div class="divisions">
-        <p>Sub-Harmonic Divisions</p>
-        <input type="number" min="1" max="24" value="2" id="freq-div-1"/>
-        <input type="number" min="1" max="24" value="3" id="freq-div-2"/>
-        <input type="number" min="1" max="24" value="4" id="freq-div-3"/>
-        <input type="number" min="1" max="24" value="5" id="freq-div-4"/>
+        <p>Sub-Harmonic Divisions - Bank 1</p>
+        <input type="number" min="1" max="24" value="2" id="freq-div-1-bank1"/>
+        <input type="number" min="1" max="24" value="3" id="freq-div-2-bank1"/>
+        <input type="number" min="1" max="24" value="4" id="freq-div-3-bank1"/>
+        <input type="number" min="1" max="24" value="5" id="freq-div-4-bank1"/>
+      </div>
+      <div class="divisions">
+        <p>Sub-Harmonic Divisions - Bank 2</p>
+        <input type="number" min="1" max="24" value="5" id="freq-div-1-bank2"/>
+        <input type="number" min="1" max="24" value="6" id="freq-div-2-bank2"/>
+        <input type="number" min="1" max="24" value="7" id="freq-div-3-bank2"/>
+        <input type="number" min="1" max="24" value="8" id="freq-div-4-bank2"/>
       </div>
       <div class="sub-harm-mixer">
         <p>Sub-Harmonic Mixer</p>

@@ -5,13 +5,19 @@ const context = new AudioContext({
 
 // DOM points
 const mainOscillator = document.getElementById('main-oscillator');
-const sideOscillator = document.getElementById('side-oscillator');
+const mainOscillatorDetune = document.getElementById('main-oscillator-detune');
+const sideOscillatorDetune = document.getElementById('side-oscillator-detune');
 const noiseFilter = document.getElementById('noise-filter');
 
-const freqDiv1 = document.getElementById('freq-div-1');
-const freqDiv2 = document.getElementById('freq-div-2');
-const freqDiv3 = document.getElementById('freq-div-3');
-const freqDiv4 = document.getElementById('freq-div-4');
+const freqDiv1Bank1 = document.getElementById('freq-div-1-bank1');
+const freqDiv2Bank1 = document.getElementById('freq-div-2-bank1');
+const freqDiv3Bank1 = document.getElementById('freq-div-3-bank1');
+const freqDiv4Bank1 = document.getElementById('freq-div-4-bank1');
+
+const freqDiv1Bank2 = document.getElementById('freq-div-1-bank2');
+const freqDiv2Bank2 = document.getElementById('freq-div-2-bank2');
+const freqDiv3Bank2 = document.getElementById('freq-div-3-bank2');
+const freqDiv4Bank2 = document.getElementById('freq-div-4-bank2');
 
 const subHarmGain1Slider = document.getElementById('sub-harm-gain-1');
 const subHarmGain2Slider = document.getElementById('sub-harm-gain-2');
@@ -58,16 +64,16 @@ mainOsc.start();
 
 let subHarmonicGen1 = context.createOscillator();
 subHarmonicGen1.type = 'sawtooth';
-subHarmonicGen1.frequency = 220;
+subHarmonicGen1.frequency.value = 220 / freqDiv1Bank1.value;
 let subHarmonicGen2 = context.createOscillator();
 subHarmonicGen2.type = 'sawtooth';
-subHarmonicGen2.frequency = 220;
+subHarmonicGen2.frequency.value = 220 / freqDiv2Bank1.value;
 let subHarmonicGen3 = context.createOscillator();
 subHarmonicGen3.type = 'sawtooth';
-subHarmonicGen3.frequency = 220;
+subHarmonicGen3.frequency.value = 220 / freqDiv3Bank1.value;
 let subHarmonicGen4 = context.createOscillator();
 subHarmonicGen4.type = 'sawtooth';
-subHarmonicGen4.frequency = 220;
+subHarmonicGen4.frequency.value = 220 / freqDiv4Bank1.value;
 subHarmonicGen1.start();
 subHarmonicGen2.start();
 subHarmonicGen3.start();
@@ -102,9 +108,13 @@ noiseSourceFilter.type = 'bandpass';
 
 
 let mixerCh1 = context.createGain();
+mixerCh1.gain.value = 0;
 let mixerCh2 = context.createGain();
+mixerCh2.gain.value = 0;
 let mixerCh3 = context.createGain();
+mixerCh3.gain.value = 0;
 let mixerCh4 = context.createGain();
+mixerCh4.gain.value = 0;
 
 let mixerOutput = context.createGain();
 mixerOutput.gain = 1;
@@ -149,43 +159,38 @@ document.querySelector('button').addEventListener('click', function () {
 });
 
 let freqDivided = false;
-let subDiv1 = 2;
-let subDiv2 = 3;
-let subDiv3 = 4;
-let subDiv4 = 5;
-
-freqDiv1.addEventListener('input', function () {
-    subDiv1 = freqDiv1.value;
-})
-freqDiv2.addEventListener('input', function () {
-    subDiv2 = freqDiv2.value;
-})
-freqDiv3.addEventListener('input', function () {
-    subDiv3 = freqDiv3.value;
-})
-freqDiv4.addEventListener('input', function () {
-    subDiv4 = freqDiv4.value;
-})
 
 
 // Modularize these next
 mainOscillator.addEventListener('input', function () {
     if (freqDivided == true) {
         mainOsc.frequency.value = logSlider((mainOscillator.value), 20, 5000);
-        subHarmonicGen1.frequency.value = logSlider((mainOscillator.value), 20, 5000) / subDiv1;
-        subHarmonicGen2.frequency.value = logSlider((mainOscillator.value), 20, 5000) / subDiv2;
-        subHarmonicGen3.frequency.value = logSlider((mainOscillator.value), 20, 5000) / subDiv3;
-        subHarmonicGen4.frequency.value = logSlider((mainOscillator.value), 20, 5000) / subDiv4;
+        sideOsc.frequency.value = logSlider((mainOscillator.value), 20, 5000);
+        subHarmonicGen1.frequency.value = logSlider((mainOscillator.value), 20, 5000) / freqDiv1Bank2.value;
+        subHarmonicGen2.frequency.value = logSlider((mainOscillator.value), 20, 5000) / freqDiv2Bank2.value;
+        subHarmonicGen3.frequency.value = logSlider((mainOscillator.value), 20, 5000) / freqDiv3Bank2.value;
+        subHarmonicGen4.frequency.value = logSlider((mainOscillator.value), 20, 5000) / freqDiv4Bank2.value;
     } else {
-        subHarmonicGen1.frequency.value = logSlider((mainOscillator.value), 20, 5000);
-        subHarmonicGen2.frequency.value = logSlider((mainOscillator.value), 20, 5000);
-        subHarmonicGen3.frequency.value = logSlider((mainOscillator.value), 20, 5000);
-        subHarmonicGen4.frequency.value = logSlider((mainOscillator.value), 20, 5000);
+        mainOsc.frequency.value = logSlider((mainOscillator.value), 20, 5000);
+        sideOsc.frequency.value = logSlider((mainOscillator.value), 20, 5000);
+        subHarmonicGen1.frequency.value = logSlider((mainOscillator.value), 20, 5000) / freqDiv1Bank1.value;
+        subHarmonicGen2.frequency.value = logSlider((mainOscillator.value), 20, 5000) / freqDiv2Bank1.value;
+        subHarmonicGen3.frequency.value = logSlider((mainOscillator.value), 20, 5000) / freqDiv3Bank1.value;
+        subHarmonicGen4.frequency.value = logSlider((mainOscillator.value), 20, 5000) / freqDiv4Bank1.value;
     }
 })
 
-sideOscillator.addEventListener('input', function () {
-    sideOsc.frequency.value = logSlider((sideOscillator.value), 20, 10000);
+// FINE TUNE
+mainOscillatorDetune.addEventListener('input', function () {
+    mainOsc.detune.value = mainOscillatorDetune.value;
+    subHarmonicGen1.detune.value = mainOscillatorDetune.value;
+    subHarmonicGen2.detune.value = mainOscillatorDetune.value;
+    subHarmonicGen3.detune.value = mainOscillatorDetune.value;
+    subHarmonicGen4.detune.value = mainOscillatorDetune.value;
+
+})
+sideOscillatorDetune.addEventListener('input', function () {
+    sideOsc.detune.value = sideOscillatorDetune.value;
 })
 
 noiseFilter.addEventListener('input', function () {
@@ -197,20 +202,20 @@ noiseFilter.addEventListener('input', function () {
 window.addEventListener('keydown', function () {
     if (freqDivided == false) {
         freqDivided = true;
-        subHarmonicGen1.frequency.value /= subDiv1;
-        subHarmonicGen2.frequency.value /= subDiv2;
-        subHarmonicGen3.frequency.value /= subDiv3;
-        subHarmonicGen4.frequency.value /= subDiv4;
+        subHarmonicGen1.frequency.value = mainOscillator.value / freqDiv1Bank2.value;
+        subHarmonicGen2.frequency.value = mainOscillator.value / freqDiv2Bank2.value;
+        subHarmonicGen3.frequency.value = mainOscillator.value / freqDiv3Bank2.value;
+        subHarmonicGen4.frequency.value = mainOscillator.value / freqDiv4Bank2.value;
     }
 
 })
 
 window.addEventListener('keyup', function () {
     freqDivided = false;
-    subHarmonicGen1.frequency.value *= subDiv1;
-    subHarmonicGen2.frequency.value *= subDiv2;
-    subHarmonicGen3.frequency.value *= subDiv3;
-    subHarmonicGen4.frequency.value *= subDiv4;
+    subHarmonicGen1.frequency.value = mainOscillator.value / freqDiv1Bank1.value;
+    subHarmonicGen2.frequency.value = mainOscillator.value / freqDiv2Bank1.value;
+    subHarmonicGen3.frequency.value = mainOscillator.value / freqDiv3Bank1.value;
+    subHarmonicGen4.frequency.value = mainOscillator.value / freqDiv4Bank1.value;
 })
 
 subHarmGain1Slider.addEventListener('input', function () {
@@ -352,12 +357,12 @@ let roomMaterials = {
     // Room wall materials
     left: 'marble',
     right: 'marble',
-    front: 'marble',
-    back: 'marble',
+    front: 'metal',
+    back: 'metal',
     // Room floor
-    down: 'marble',
+    down: 'metal',
     // Room ceiling
-    up: 'marble',
+    up: 'brick-bare',
 };
 
 resonanceAudioScene.setRoomProperties(roomDimensions, roomMaterials);
